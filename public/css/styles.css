@@ -1,0 +1,31 @@
+#menu{
+    margin-top:5px;
+}
+
+#colMasv, #colCC, #colKT, #colThi {
+    width:50px;
+}
+
+#nd {
+    margin-top:15px;
+    margin-left:100px;
+}
+#vnua {
+    margin-top:20px;
+}
+
+#hiddenField {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px,1px,1px,1px);
+}
+
+.stt {
+    max-width:50px;
+}
+
+.masv{
+    max-width:80px;
+}

@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="en" ng-app="nhapfile">
+<head>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/toaster.min.css" rel="stylesheet" />
+    <title>Nhập điểm từ file excel</title>
+</head>
+<body>
+    <div ng-controller="nhapFileCtrl">
+        <div class="container" id="nhapDiem">
+            <div class="row" id="menu">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/index.html">
+                                <img alt="Brand" src="/brand3.png" />
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="/index.html">Nhập điểm từ file <span class="sr-only">(current)</span></a></li>
+                                <li><a href="/nhapdiem.html">Nhập điểm thủ công</a></li>
+                                <li><a href="/nhapds.html">Nhập điểm theo danh sách</a></li>
+                                <li><a href="/docdiem.html">Đọc điểm</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading"> Nhập điểm từ file excel
+                    </div>
+                            <form class="form-inline" id="nd">
+                                <div class="form-group">
+                                    <label for="colMasv">Masv</label>
+                                    <input type="text" class="form-control" id="colMasv"
+                                           ng-model="colMasv"
+                                           ng-change="change()"
+                                           ng-disabled="textBoxEnable"
+                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="colCC">CC</label>
+                                    <input type="text" class="form-control" id="colCC"
+                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                           ng-model="colCC"
+                                           ng-change="change()"
+                                           ng-disabled="textBoxEnable">
+                                </div>
+                                <div class="form-group">
+                                    <label for="colKT">KT</label>
+                                    <input type="text" class="form-control" id="colKT"
+                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                           ng-model="colKT"
+                                           ng-change="change()"
+                                           ng-disabled="textBoxEnable">
+                                </div>
+                                <div class="form-group">
+                                    <label for="colThi">Thi</label>
+                                    <input type="text" class="form-control" id="colThi"
+                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                           ng-model="colThi"
+                                           ng-change="change()"
+                                           ng-disabled="textBoxEnable">
+                                </div>
+                                <div class="form-group" ng-show="fileEnable">
+                                    <label for="exampleInputFile">File điểm (.xlsx)</label>
+                                    <input type="file" ng-file-select="onFileSelect($files)" class="form-control" accept=".xlsx" />
+                                </div>
+                                <button class="btn btn-default" ng-click="nhapdiem()" ng-show="nhapDiemEnable">Nhập điểm</button>
+                                <button class="btn btn-default" ng-click="refresh()" ng-show="nhapDiemEnable">Referesh</button>
+                            </form>
+
+                            <iframe id="vnua" src="http://daotao.vnua.edu.vn" style="width:100%; height: 100em"
+                            frameborder="0"></iframe>
+                 </div>
+             </div>
+         </div>
+
+    </div>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/toaster.min.js"></script>
+    <script src="lib/angular-file-upload.js"></script>  
+
+    <script src="nhapfile.js"></script>
+</body>
+</html>

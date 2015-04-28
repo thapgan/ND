@@ -1,0 +1,106 @@
+﻿<!doctype html>
+<html lang="en" ng-app="nhapds">
+<head>
+    <meta charset="utf-8">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/toaster.min.css" rel="stylesheet" />
+    <title>Nhập điểm theo danh sách</title>
+    
+
+</head>
+<body>
+    <div ng-controller="nhapdsCtrl">
+        <toaster-container></toaster-container>
+        <div class="container" id="nhapDiem">
+            <div class="row" id="menu">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/index.html">
+                                <img alt="Brand" src="/brand3.png" />
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/index.html">Nhập điểm từ file</a></li>
+                                <li><a href="/nhapdiem.html">Nhập điểm thủ công</a></li>
+                                <li class="active"><a href="/nhapds.html">Nhập điểm theo danh sách</a></li>
+                                <li><a href="/docdiem.html">Đọc điểm</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="nhapdiem()"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Nhập điểm</button>
+                            <button type="button" class="btn btn-default" ng-click="chuyendiem(1)"><span class="glyphicon glyphicon-random" aria-hidden="true"></span> Chuyển điểm chuyên cần</button>
+                            <button type="button" class="btn btn-default" ng-click="chuyendiem(2)"><span class="glyphicon glyphicon-random" aria-hidden="true"></span> Chuyển điểm kiểm tra</button>
+                            <button type="button" class="btn btn-default" ng-click="chuyendiem(3)"><span class="glyphicon glyphicon-random" aria-hidden="true"></span> Chuyển điểm thi</button>
+                            <button type="button" class="btn btn-default" ng-click="delete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Xoá bảng điểm</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        
+                        <div class="table-responsive" ng-show="bDiemEnable">
+
+                            <table class="table table-hover table-condensed" ng-if="bDiem.length>0">
+                                <thead>
+                                <th>STT</th>
+                                <th>Mã SV</th>
+                                <th>Điểm</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="sv in bDiem | filter: {diem: '!null'}">
+                                        <td class="stt">
+                                            {{$index + 1}}
+                                        </td>
+                                        <td class="masv">
+                                            <span ng-show="!sv.msEditable">{{sv.masv}}</span>
+                                        </td>
+                                        <td class="stt" ng-click="editDiem($index)">
+                                            <span ng-show="!sv.dEditable">{{sv.diem}}</span>
+                                            <input type="text" class="form-control"
+                                                   id="{{'d'+$index}}"
+                                                   ng-model="sv.diem" ng-show="sv.dEditable" ng-blur="finishDiem($index)">
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <input type="text" id="hiddenField" ng-model="inputTyping"
+                                   ng-keypress="changed($event)"
+                                   focus-on="nhapdiem"/>
+                        </div>
+                        <iframe id="vnua" src="http://daotao.vnua.edu.vn" ng-show="dsEnable"
+                                style="width:100%; height: 100em"
+                                frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/toaster.min.js"></script>
+
+    <script src="nhapds.js"></script>
+</body>
+</html>

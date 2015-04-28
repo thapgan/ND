@@ -1,0 +1,16 @@
+{
+  "name": "MEAN",
+  "version": "0.0.0",
+  "description": "MEAN",
+  "main": "server.js",
+  "author": {
+    "name": "Ghost",
+    "email": ""
+  },
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "busboy": "^0.2.9",
+    "excel": "^0.1.2",
+    "express": "^4.10.1"
+  }
+}
